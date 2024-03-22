@@ -1,0 +1,183 @@
+1.打开视频并全屏
+音频比视频短一点点，最后会循环播放
+2.弹出txt文本并显示内容，关闭后自动删除
+监控不到用户关闭txt文本 （改用显示后直接删除）
+3.更改默认音频设备的音量
+音量获取到的是-65.25~0，但是前半部分间隔小，后半部分间隔大
+4.在宠物自由走动时在上下边界会出现抽搐bug
+5.在松开宠物时‘别点我’不会立即消失并且还会行走
+
+2024-02-10 17:12:43,857 | Guka.comunication.comunication | comunication.py[line:32] |  ERROR: [WinError 10061] 由于目标计算机积极拒绝，无法连接。 |  __init__
+2024-02-10 17:12:49,160 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,161 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,161 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,162 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,162 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,163 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,163 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,164 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,164 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,165 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,165 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,165 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,166 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,166 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,167 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,167 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,168 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,168 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,169 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,169 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,170 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 17:12:49,170 | Guka | main.py[line:26] |  ERROR: 'Com' object has no attribute 'stream' |  start_main
+2024-02-10 18:28:50,128 | Guka.comunication.comunication | comunication.py[line:38] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-10 18:28:50,129 | Guka | main.py[line:28] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  start_main
+Traceback (most recent call last):
+  File "D:\pycharm\pytest\main.py", line 83, in <module>
+    pet = pet.DesktopPet()
+  File "D:\pycharm\pytest\pet\pet.py", line 33, in __init__
+    self.initPetImage()
+  File "D:\pycharm\pytest\pet\pet.py", line 113, in initPetImage
+    self.pet[0].append("./pet/direction/"+i)
+IndexError: list index out of range
+Exception ignored on calling ctypes callback function: <function catch_errors.<locals>.call_with_this at 0x0000027C6F96DCA0>
+Traceback (most recent call last):
+  File "D:\pycharm\pytest\venv\lib\site-packages\comtypes\_comobject.py", line 113, in call_with_this
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\logging\__init__.py", line 1474, in error
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\logging\__init__.py", line 1699, in isEnabledFor
+TypeError: 'NoneType' object is not callable
+Exception ignored on calling ctypes callback function: <function catch_errors.<locals>.call_with_this at 0x0000015D09D0DCA0>
+Traceback (most recent call last):
+  File "D:\pycharm\pytest\venv\lib\site-packages\comtypes\_comobject.py", line 113, in call_with_this
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\logging\__init__.py", line 1474, in error
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\logging\__init__.py", line 1699, in isEnabledFor
+TypeError: 'NoneType' object is not callable
+Traceback (most recent call last):
+  File "D:\pycharm\pytest\main.py", line 83, in <module>
+    pet = pet.DesktopPet()
+  File "D:\pycharm\pytest\pet\pet.py", line 25, in __init__
+    self.setWindowIcon(QIcon('./icon/guka.ico'))
+RuntimeError: super-class __init__() of type DesktopPet was never called
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\threading.py", line 980, in _bootstrap_inner
+    self.run()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\threading.py", line 917, in run
+    self._target(*self._args, **self._kwargs)
+TypeError: run() missing 2 required positional arguments: 'self' and 'text'
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\threading.py", line 980, in _bootstrap_inner
+    self.run()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\threading.py", line 917, in run
+    self._target(*self._args, **self._kwargs)
+TypeError: run() missing 1 required positional argument: 'text'
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\threading.py", line 980, in _bootstrap_inner
+    self.run()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\threading.py", line 917, in run
+    self._target(*self._args, **self._kwargs)
+TypeError: run() takes 1 positional argument but 2 were given
+Traceback (most recent call last):
+  File "D:\pycharm\pytest\main.py", line 7, in <module>
+    from pet import pet
+  File "D:\pycharm\pytest\pet\__init__.py", line 1, in <module>
+    from .pet import *
+  File "D:\pycharm\pytest\pet\pet.py", line 4, in <module>
+    import windowsApi
+ModuleNotFoundError: No module named 'windowsApi'2024-02-15 10:32:30,309 | Guka.pet.pet | pet.py[line:44] |  ERROR: 'Com' object has no attribute 'run' |  __init__
+2024-02-15 10:32:50,939 | Guka.pet.pet | pet.py[line:410] |  ERROR: 'DesktopPet' object has no attribute 'timer' |  mousePressEvent
+2024-02-15 10:32:50,974 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,022 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,038 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,054 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,070 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,078 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,086 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,122 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,142 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,158 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,182 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,238 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,278 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,294 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,446 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,678 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,694 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,739 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,782 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,814 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,838 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,846 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:32:51,862 | Guka.pet.pet | pet.py[line:421] |  ERROR: 'DesktopPet' object has no attribute 'is_follow_mouse' |  mouseMoveEvent
+2024-02-15 10:57:21,296 | Guka.comunication.comunication | comunication.py[line:76] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  run_str
+2024-02-15 10:57:21,303 | Guka.comunication.comunication | comunication.py[line:76] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  run_str
+2024-02-15 11:09:10,899 | Guka.comunication.comunication | comunication.py[line:33] |  ERROR: [WinError 10061] 由于目标计算机积极拒绝，无法连接。 |  __init__
+2024-02-15 11:09:18,415 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-15 11:09:18,415 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-15 11:09:18,415 | Guka.comunication.comunication | comunication.py[line:77] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  run_str
+2024-02-15 11:09:51,295 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-15 11:09:51,295 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-15 11:09:51,295 | Guka.comunication.comunication | comunication.py[line:77] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  run_str
+2024-02-15 11:40:50,795 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  run_str
+2024-02-15 11:42:46,159 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10054] 远程主机强迫关闭了一个现有的连接。 |  run_str
+2024-02-15 11:45:21,647 | Guka.comunication.comunication | comunication.py[line:33] |  ERROR: [WinError 10061] 由于目标计算机积极拒绝，无法连接。 |  __init__
+2024-02-15 11:45:27,673 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-15 11:45:27,673 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  run_str
+2024-02-15 11:45:39,377 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-15 11:45:39,378 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  run_str
+2024-02-15 11:46:06,747 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-15 11:46:06,747 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  run_str
+2024-02-15 11:46:09,458 | Guka.comunication.comunication | comunication.py[line:49] |  ERROR: 'Com' object has no attribute 'stream' |  close_down
+2024-02-15 11:53:24,068 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  run_str
+2024-02-15 11:55:18,647 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10054] 远程主机强迫关闭了一个现有的连接。 |  run_str
+2024-02-15 12:13:50,500 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10054] 远程主机强迫关闭了一个现有的连接。 |  run_str
+2024-02-15 12:14:01,829 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10054] 远程主机强迫关闭了一个现有的连接。 |  send_data
+2024-02-15 12:14:01,829 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10054] 远程主机强迫关闭了一个现有的连接。 |  run_str
+2024-02-15 12:15:24,328 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10054] 远程主机强迫关闭了一个现有的连接。 |  run_str
+2024-02-15 12:16:01,721 | Guka.comunication.comunication | comunication.py[line:33] |  ERROR: [WinError 10061] 由于目标计算机积极拒绝，无法连接。 |  __init__
+2024-02-15 12:16:13,993 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-15 12:16:13,993 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  run_str
+2024-02-15 12:16:18,690 | Guka.comunication.comunication | comunication.py[line:49] |  ERROR: 'Com' object has no attribute 'stream' |  close_down
+2024-02-15 12:24:56,497 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10054] 远程主机强迫关闭了一个现有的连接。 |  run_str
+2024-02-15 12:30:59,008 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10054] 远程主机强迫关闭了一个现有的连接。 |  run_str
+2024-02-15 13:06:04,516 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10054] 远程主机强迫关闭了一个现有的连接。 |  run_str
+2024-02-15 13:07:54,385 | Guka.comunication.comunication | comunication.py[line:33] |  ERROR: [WinError 10061] 由于目标计算机积极拒绝，无法连接。 |  __init__
+2024-02-15 13:08:01,860 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-15 13:08:01,861 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  run_str
+2024-02-15 13:08:01,861 | Guka.comunication.comunication | comunication.py[line:49] |  ERROR: 'Com' object has no attribute 'stream' |  close_down
+2024-02-15 13:08:32,537 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10054] 远程主机强迫关闭了一个现有的连接。 |  run_str
+2024-02-15 13:09:23,798 | Guka.comunication.comunication | comunication.py[line:33] |  ERROR: [WinError 10061] 由于目标计算机积极拒绝，无法连接。 |  __init__
+2024-02-15 13:09:28,305 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-15 13:09:28,305 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  run_str
+2024-02-15 13:09:28,305 | Guka.comunication.comunication | comunication.py[line:49] |  ERROR: 'Com' object has no attribute 'stream' |  close_down
+2024-02-15 13:10:02,445 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10054] 远程主机强迫关闭了一个现有的连接。 |  run_str
+2024-02-15 13:16:55,319 | Guka.comunication.comunication | comunication.py[line:33] |  ERROR: [WinError 10061] 由于目标计算机积极拒绝，无法连接。 |  __init__
+2024-02-15 13:17:00,470 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-15 13:17:00,470 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  run_str
+2024-02-15 13:17:00,470 | Guka.comunication.comunication | comunication.py[line:49] |  ERROR: 'Com' object has no attribute 'stream' |  close_down
+2024-02-15 13:17:09,424 | Guka.comunication.comunication | comunication.py[line:33] |  ERROR: [WinError 10061] 由于目标计算机积极拒绝，无法连接。 |  __init__
+2024-02-15 13:27:58,488 | Guka.comunication.comunication | comunication.py[line:33] |  ERROR: [WinError 10061] 由于目标计算机积极拒绝，无法连接。 |  __init__
+2024-02-15 13:28:03,308 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-15 13:28:03,308 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  run_str
+2024-02-15 13:28:03,308 | Guka.comunication.comunication | comunication.py[line:49] |  ERROR: 'Com' object has no attribute 'stream' |  close_down
+2024-02-15 13:38:46,507 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  run_str
+2024-02-15 13:39:15,632 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  send_data
+2024-02-15 13:39:15,644 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  run_str
+2024-02-15 13:39:54,875 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  send_data
+2024-02-15 13:39:54,893 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  run_str
+2024-02-15 13:43:17,239 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  send_data
+2024-02-15 13:43:17,240 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  run_str
+2024-02-15 13:43:28,904 | Guka.comunication.comunication | comunication.py[line:39] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  send_data
+2024-02-15 13:43:28,904 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。 |  run_str
+2024-02-15 14:02:31,323 | Guka.comunication.comunication | comunication.py[line:78] |  ERROR: 'utf-8' codec can't decode byte 0xe4 in position 1023: unexpected end of data |  run_str
+2024-02-15 14:27:23,721 | Guka.comunication.comunication | comunication.py[line:33] |  ERROR: [WinError 10061] 由于目标计算机积极拒绝，无法连接。 |  __init__
+2024-02-15 14:27:36,805 | Guka.pet.pet | pet.py[line:62] |  ERROR: error() missing 1 required positional argument: 'msg' |  audioToaudio
+2024-02-15 16:18:01,702 | Guka.pet.pet | pet.py[line:635] |  ERROR: get_string_after() takes 2 positional arguments but 3 were given |  keyboard_input
+2024-02-16 19:09:46,965 | Guka.comunication.comunication | comunication.py[line:29] |  ERROR: [WinError 10061] 由于目标计算机积极拒绝，无法连接。 |  __init__
+2024-02-16 19:09:46,976 | Guka.comunication.comunication | comunication.py[line:35] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-16 19:09:46,993 | Guka.comunication.comunication | comunication.py[line:67] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  run_str
+2024-02-16 19:10:05,218 | Guka.comunication.comunication | comunication.py[line:29] |  ERROR: [WinError 10061] 由于目标计算机积极拒绝，无法连接。 |  __init__
+2024-02-16 19:10:05,232 | Guka.comunication.comunication | comunication.py[line:35] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  send_data
+2024-02-16 19:10:05,238 | Guka.comunication.comunication | comunication.py[line:67] |  ERROR: [WinError 10057] 由于套接字没有连接并且(当使用一个 sendto 调用发送数据报套接字时)没有提供地址，发送或接收数据的请求没有被接受。 |  run_str

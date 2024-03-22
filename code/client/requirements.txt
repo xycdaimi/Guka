@@ -1,0 +1,11 @@
+logging
+pyaudio
+opencv-python
+pywin32
+psutil
+keyboard
+comtypes
+pycaw
+ffpyplayer
+PyQt5
+pyautogui
