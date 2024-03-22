@@ -2,17 +2,37 @@
 
 ## GitHub
 
-链接：https://github.com/xycdaimi/Guka/tree/master
+链接：https://github.com/xycdaimi/Guka
 
 ## 模型文件
 
-### chatglm-6b
+### chatglm
+
+   选择一种模型放到server/model文件夹里，再将模型调用的路径改一下
+
+#### chatglm-6b
 
 链接：https://pan.baidu.com/s/1onhN8IvCDShlvITvNmtCXA 
 提取码：guka 
 --来自百度网盘超级会员V1的分享
 
+#### chatglm2-6b
+
+链接：https://pan.baidu.com/s/1ZQf9OAd9_djecA1qdPpYkg 
+提取码：guka 
+--来自百度网盘超级会员V2的分享
+
+### so-vits-svc
+
+   checkpoint_best_legacy_500.pt和rmvpe.pt放入server/pretrain文件夹里，model放入server/pretrain/nsf_hifigan/里，其他的放入server/model/so-vits-svc/里
+
+链接：https://pan.baidu.com/s/14mKvQWALmA5S8MVWbDdojg 
+提取码：guka 
+--来自百度网盘超级会员V2的分享
+
 ### whisper
+
+   放到server/model/whisper/里
 
 链接：https://pan.baidu.com/s/10pHoMNvRdy8WM_wCupop8Q 
 提取码：guka 
