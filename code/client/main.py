@@ -35,7 +35,7 @@ def get_json(update_file):
 
 
 def get_json_server(r_version):
-    r_content = requests.get(r_version).json()
+    r_content = requests.get(r_version, verify=False).json()
     return r_content
 
 
@@ -102,8 +102,13 @@ def get_ip():
 
 
 if __name__ == '__main__':
+    # 检查更新
+    check_version()
+    # 检查应用列表文件是否存在
     check_peizhi()
+    # 获取服务器的ip地址及端口号
     host, port = get_ip()
+    # 设置音频
     CHUNK = 1024
     FORMAT = pyaudio.paInt16
     CHANNELS = 1

@@ -145,7 +145,26 @@ class WindowsAPI:
             current_time = datetime.datetime.now()
 
             # 格式化当前时间
-            formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S %A")  # 包括年、月、日、时、分、秒和星期
+            formatted_time_without_weekday = current_time.strftime("%Y-%m-%d %H:%M:%S")  # 包括年、月、日、时、分、秒
+            # 获取星期几的英文缩写（例如：Mon）
+            weekday_abbr = current_time.strftime("%a")
+
+            # 定义英文星期缩写到中文的映射
+            weekday_abbr_to_chinese = {
+                "Mon": "星期一",
+                "Tue": "星期二",
+                "Wed": "星期三",
+                "Thu": "星期四",
+                "Fri": "星期五",
+                "Sat": "星期六",
+                "Sun": "星期日"
+            }
+
+            # 获取对应的中文星期几
+            chinese_weekday = weekday_abbr_to_chinese[weekday_abbr]
+
+            # 拼接完整的格式化时间字符串，包括中文星期几
+            formatted_time = f"{formatted_time_without_weekday} {chinese_weekday}"
 
             # 打印格式化后的当前时间
             logger.info(formatted_time)

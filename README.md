@@ -53,7 +53,7 @@
 
 #### 环境配置
 
-1. 执行客户端文件夹client下的requirements.txt
+1. 安装客户端文件夹client下的requirements.txt
    pip install -r requirements.txt
 2. 在运行服务端后可运行main.py文件，客户端默认在windows系统中运行
 
@@ -63,8 +63,8 @@
 
 1. 安装miniconda或anaconda，这里以miniconda为例。链接：http://t.csdnimg.cn/O1Thc
 2. 安装cuda和cudnn。
-3. 从网盘里下载好模型文件放入对应的文件夹。注意：请根据服务器的显存大小选择相应的模型文件，这里以12G显存为例，使用chatglm-6b-int4和medium.pt模型
-4. 执行服务端文件夹server下的requirements.txt
+3. 从网盘里下载好模型文件放入对应的文件夹。注意：请根据服务器的显存大小选择相应的模型文件，这里以12G显存为例，使用chatglm2-6b-int4和medium.pt模型和keli50000.pt
+4. 安装服务端文件夹server下的requirements.txt
    pip install -r requirements.txt
 5. 运行main.py文件，可放入后台。注：运行后只有关机或杀死进程才能终止程序。
 
@@ -80,7 +80,7 @@
 
 ## 代码说明
 
-目录结构如下：
+部分目录结构如下：
 
 ~~~
 guka  
@@ -124,6 +124,10 @@ guka
 │     │  ├─comunication.py    通信模块文件
 │     │  └─__init__.py        文件夹配置文件
 │     │
+│     ├─tts                   文字转语音模块
+│     │  ├─tts.py             文字转语音模块文件
+│     │  └─__init__.py        文件夹配置文件
+│     │
 │     ├─log                   日志模块
 │     │  ├─log.py             日志模块文件
 │     │  └─__init__.py        文件夹配置文件
@@ -161,11 +165,8 @@ guka
 
 ## 小组分工说明
 
-罗航：负责用whisper模型、pyttsx3实现用户的语音识别、文字合成语音
+罗航：负责用whisper模型、用so-vits-svc实现语音克隆
 
-谢宇宸：负责使用chatglm-6b模型实现宠物聊天语言互动功能,客户端和服务器的通信传输，项目代码的整合，各部分的衔接。
+谢宇宸：负责使用chatglm模型实现宠物聊天语言互动功能,客户端和服务器的通信传输，edge-tts文字转语音，项目代码的整合，各部分的衔接。
 
-伍定楠：负责智能桌面宠物的实现，例如：调用系统接口完成用户需求、鼠标互动，宠物动画的播放等等
-
-
-
+伍定楠：负责智能桌面宠物的实现，例如：调用系统接口完成用户需求、鼠标互动，宠物动画的播放，用户辅助功能等等
