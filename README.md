@@ -166,7 +166,7 @@ guka
 ## 项目展示
 
 <video width="320" height="240" controls>  
-  <source src="./docs/演示视频_1.mp4" type="video/mp4">  
+  <source src="https://pan.baidu.com/s/130gCFdMjrkRXIv4uA2mClA?fid=704315713862542" type="video/mp4">  
   您的浏览器不支持Video标签。  
 </video>
 
