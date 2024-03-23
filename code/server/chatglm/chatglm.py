@@ -9,13 +9,13 @@ class ChatGLM(object):
     # Load tokenizer and PyTorch weights form the Hub
     def __init__(self,file_path):
         try:
-            self.tokenizer = AutoTokenizer.from_pretrained("model/chatGLM-int4", trust_remote_code=True)
+            self.tokenizer = AutoTokenizer.from_pretrained("model/chatGLM2-int4", trust_remote_code=True)
             is_gpu_available = torch.cuda.is_available()
             if is_gpu_available:
-                self.model = AutoModel.from_pretrained("model/chatGLM-int4", trust_remote_code=True).half().cuda()
+                self.model = AutoModel.from_pretrained("model/chatGLM2-int4", trust_remote_code=True).half().cuda()
                 logger.info('使用GPU')
             else:
-                self.model = AutoModel.from_pretrained("model/chatGLM-int4", trust_remote_code=True).cpu().float()
+                self.model = AutoModel.from_pretrained("model/chatGLM2-int4", trust_remote_code=True).cpu().float()
                 logger.info('使用CPU')
             self.model = self.model.eval()
             start = [(

@@ -688,7 +688,7 @@ class DesktopPet(QWidget):
                     self.win.lock_computer()
                 elif '现在时间' in textInput:
                     te = '当前时间：' + self.win.get_local_time()
-                    t = threading.Thread(target=self.textTotextToaudio, args=(te,))
+                    t = threading.Thread(target=self.textTotextToaudio, args=(te,1,))
                     t.start()
                 elif '杀死进程号' in textInput:
                     pid = self.get_string_after(textInput, '杀死进程号')
