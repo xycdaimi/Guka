@@ -165,13 +165,6 @@ guka
 ├─README.md                   说明文档
 ~~~
 
-## 项目展示
-
-<video width="320" height="240" controls>  
-  <source src="https://pan.baidu.com/s/130gCFdMjrkRXIv4uA2mClA?fid=704315713862542" type="video/mp4">  
-  您的浏览器不支持Video标签。  
-</video>
-
 ## 小组分工说明
 
 罗航：负责用whisper模型、用so-vits-svc实现语音克隆
