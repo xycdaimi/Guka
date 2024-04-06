@@ -76,7 +76,7 @@ def json_file_paths(input_json_path, output_json_path):
                 program['exe_file'] = file_path
             else:
                 del data['programs'][i]
-                program['exe_file'] = ''
+                del program['exe_file']
             QApplication.processEvents()  # 处理事件队列中的事件，包括更新GUI
 
         progress.timer.stop()  # 确保进度条停止更新
