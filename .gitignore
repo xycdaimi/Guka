@@ -6,5 +6,6 @@ model_20000.pt
 *.pkl
 checkpoint_best_legacy_500.pt
 rmvpe.pt
-model
+*.zip
+code\server\pretrain\nsf_hifigan\model
 
