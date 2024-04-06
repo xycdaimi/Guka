@@ -76,7 +76,7 @@ def start_main(audio, chat, say, svc, conn,addr):
                 with wave.open('./results/'+str(addr)+'.wav', 'rb') as wav_file:
                     while True:
                         data = wav_file.readframes(1024)
-                        if not data:  
+                        if not data:
                             break  # 没有更多数据了
                         conn.sendall(data)
                 logger.info('回答发送完毕')

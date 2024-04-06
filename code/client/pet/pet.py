@@ -33,7 +33,6 @@ class DesktopPet(QWidget):
             self.audio = None
             self.text = ''
             self.random_index = None
-            self.say = pyttsx3.init()
             self.app = QApplication(sys.argv)
             super(DesktopPet, self).__init__(parent)
             # 窗体初始化
