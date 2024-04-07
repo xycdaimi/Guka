@@ -432,7 +432,7 @@ class DesktopPet(QWidget):
             self.mouse_drag_pos = event.globalPos() - self.pos()
             event.accept()
             # 拖动时鼠标图形的设置
-            self.setCursor(QCursor(Qt.OpenHandCursor))
+            self.setCursor(Qt.ClosedHandCursor)
         except Exception as e:
             logger.error(e)
 
@@ -465,7 +465,7 @@ class DesktopPet(QWidget):
     def enterEvent(self, event):
         try:
             # 设置鼠标形状 Qt.ClosedHandCursor   非指向手
-            self.setCursor(Qt.ClosedHandCursor)
+            self.setCursor(QCursor(Qt.OpenHandCursor))
         except Exception as e:
             logger.error(e)
 
