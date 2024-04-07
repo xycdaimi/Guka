@@ -6,6 +6,10 @@
 
 链接：https://github.com/xycdaimi/Guka
 
+## 完整演示视频
+
+链接：https://pan.baidu.com/s/130gCFdMjrkRXIv4uA2mClA?fid=402721398545105
+
 ## 模型文件
 
 ### chatglm
