@@ -8,4 +8,5 @@ comtypes
 pycaw
 ffpyplayer
 PyQt5
+PyQtWebEngine
 pyautogui
