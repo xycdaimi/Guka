@@ -1,17 +1,25 @@
 import log
 logger = log.setup_log(file_name="server.log")
-import chatglm
-import speak
-import pyaudio
 import os
-import shutil
-import wave
 import threading
 import comunication
 import tts
-import vits
-import numpy as np
+import signal
+import sys
+from User import User
+from speak import speak
+import wave
+from chatglm import demo_chat, demo_tool
+#, demo_ci
+from enum import Enum
+from chatglm.client import svc
+class Mode(str, Enum):
+    CHAT, TOOL, CI = '💬 Chat', '🛠️ Tool', '🧑‍💻 Code Interpreter'
+DEFAULT_SYSTEM_PROMPT = '''
+你的名字是咕卡，要记住这个名字，你是一只会说话、了解各种知识的宠物，可以自由回答问题，回答要尽量地简洁，像人类一样思考和表达。你可以调用各种API工具函数，例如打开应用等等，以此辅助我完成各项工作，陪我聊天和学习，给我带来欢声笑语，给予我精神上的寄托，请尽量使用中文回答我。
+'''.strip()
 clients = []
+users = User.load_users_from_json(User.FILE_PATH)
 def remove_file(file_path):
     try:
         if os.path.exists(file_path):
@@ -27,99 +35,142 @@ def get_client_index(clients, client_socket):
         return clients.index(client_socket)
     except ValueError:
         return -1
-def start_main(audio, chat, say, svc, conn,addr):
-    try:
-        file_path = 'recoding'+str(addr)+'.wav'
-        audio.wav_rw('wb',file_path)
-        ttstr = tts.TTSController(str(addr)+'.wav')
-        while True:
-            data = conn.recv(audio.CHUNK)
-            if not data:
-                break
-            elif data == b'end':
-                break
-            elif data == b'zf' or data == b'dq':
-                textdata = conn.recv(1024).decode()
-                break
-            audio.accept_data(data)
-        if data == b'end':
+def start_main(audio, say, conn,addr):
+    file_path = 'recoding'+str(addr)+'.wav'
+    audio.wav_rw('wb',file_path)
+    tab = 0
+    while True:
+        data_type, data = audio.receive_data(conn)
+        if data == "登录":
+            break
+        elif data == "注册":
+            break
+        elif data == "end":
             audio.wav_close()
-            user_input=say.forward(file_path)
-            logger.info(user_input)
-            if user_input != '':
-                audio.send_data(conn,1,user_input.encode())
-                #conn.sendall(user_input.encode())
-                flag = conn.recv(audio.CHUNK)
-                if flag == b'ok':
-                    res = chat.forward(user_input)
-                    logger.info(res)
-                    ttstr.textToaudio(res)
-                    svc.forward([str(addr)+'.wav'],str(addr))
-                    audio.send_data(conn,1,res.encode())
-                    with wave.open('./results/'+str(addr)+'.wav', 'rb') as wav_file:
-                        while True:
-                            data = wav_file.readframes(1024)
-                            if not data:  
-                                break  # 没有更多数据了
-                            conn.sendall(data)
-                    logger.info('回答发送完毕')
-                else:
-                    logger.info('回答结束')
-        elif data == b'zf':
-            if textdata:
-                res = chat.forward(textdata)
-                textdata = ''
-                logger.info(res)
-                ttstr.textToaudio(res)
-                svc.forward([str(addr)+'.wav'],str(addr))
-                audio.send_data(conn,1,res.encode())
-                with wave.open('./results/'+str(addr)+'.wav', 'rb') as wav_file:
-                    while True:
-                        data = wav_file.readframes(1024)
-                        if not data:
-                            break  # 没有更多数据了
-                        conn.sendall(data)
-                logger.info('回答发送完毕')
-        elif data == b'dq':
-            if textdata:
-                ttstr.textToaudio(textdata)
-                textdata = ''
-                svc.forward([str(addr)+'.wav'],str(addr))
-                with wave.open('./results/'+str(addr)+'.wav', 'rb') as wav_file:
-                    while True:
-                        data = wav_file.readframes(1024)
-                        if not data:
-                            break  # 没有更多数据了
-                        conn.sendall(data)
-    except Exception as e:
-        logger.error(e)
-    finally:
-        remove_file(file_path)
-        remove_file('./raw/'+str(addr)+'.wav')
-        remove_file('./results/'+str(addr)+'.wav')
-        clients.remove(conn)
-        conn.close()
+            break
+        elif data == "对话":
+            break
+        elif data == '合成语音':
+            break
+        elif data_type == comunication.AUDIO:
+            audio.accept_data(data)
+    if data == "登录":
+        audio.wav_close()
+        rmreo = threading.Thread(target=remove_file,args=(file_path,))
+        rmreo.start()
+        data_type, data = audio.receive_data(conn)
+        res = User.choice_user(users, data['username'], data['password'])
+        if res == -1:
+            audio.send_data(conn,comunication.STRING, "用户名错误")
+        elif res == -2:
+            audio.send_data(conn,comunication.STRING, "密码错误")
+        elif res == -3:
+            audio.send_data(conn,comunication.STRING, "用户不存在")
+        else:
+            audio.send_data(conn,comunication.STRING, "ok")
+            audio.send_data(conn,comunication.JSON, {'uid': res.uid})
+    elif data == "注册":
+        audio.wav_close()
+        rmreo = threading.Thread(target=remove_file,args=(file_path,))
+        rmreo.start()
+        data_type, data = audio.receive_data(conn)
+        user = User.User(uid=data['uid'],username=data['username'],password=data['password'])
+        res = User.is_registered(users,user)
+        if res:
+            audio.send_data(conn,comunication.STRING, "ok")
+        else:
+            audio.send_data(conn,comunication.STRING, "用户名已存在")
+    elif data == "end":
+        text = say.forward(file_path)
+        audio.send_data(conn, comunication.STRING,text)
+        rmreo = threading.Thread(target=remove_file,args=(file_path,))
+        rmreo.start()
+    elif data == '合成语音':
+        audio.wav_close()
+        rmreo = threading.Thread(target=remove_file,args=(file_path,))
+        rmreo.start()
+        data_type, data = audio.receive_data(conn)
+        ttstr = tts.TTSController(str(addr)+'.wav')
+        if data_type == comunication.STRING:
+            ttstr.textToaudio(data.strip())
+            svc.forward([str(addr)+'.wav'], str(addr))
+            with wave.open('./results/'+str(addr)+'.wav', 'rb') as wav_file:
+                while True:
+                    vioce_data = wav_file.readframes(1024)
+                    if not vioce_data:
+                        break  # 没有更多数据了
+                    conn.sendall(vioce_data)
+            remove_file('./raw/'+str(addr)+'.wav')
+            remove_file('./results/'+str(addr)+'.wav')
+    elif data == "对话":
+        audio.wav_close()
+        rmreo = threading.Thread(target=remove_file,args=(file_path,))
+        rmreo.start()
+        data_type, data = audio.receive_data(conn)
+        logger.info(data)
+        if data['flag'] == "推理":
+            match data['mode']:
+                case Mode.CHAT:
+                    demo_chat.main(
+                        retry=data['retry'],
+                        top_p=data['top_p'],
+                        temperature=data['temperature'],
+                        prompt_text=data['prompt_text'],
+                        system_prompt=DEFAULT_SYSTEM_PROMPT,
+                        repetition_penalty=data['repetition_penalty'],
+                        max_new_tokens=data['max_new_token'],
+                        uid=data['uid'],
+                        addr=addr,
+                        conn=conn,
+                        audio=audio
+                    )
+                case Mode.TOOL:
+                    demo_tool.main(
+                        system_prompt=DEFAULT_SYSTEM_PROMPT,
+                        retry=data['retry'],
+                        top_p=data['top_p'],
+                        temperature=data['temperature'],
+                        prompt_text=data['prompt_text'],
+                        repetition_penalty=data['repetition_penalty'],
+                        max_new_tokens=data['max_new_token'],
+                        truncate_length=1024,
+                        uid=data['uid'],
+                        addr=addr,
+                        conn=conn,
+                        audio=audio)
+                case Mode.CI:
+                    demo_ci.main(
+                        retry=data.retry,
+                        top_p=data.top_p,
+                        temperature=data.temperature,
+                        prompt_text=data.prompt_text,
+                        repetition_penalty=data.repetition_penalty,
+                        max_new_tokens=data.max_new_token,
+                        truncate_length=1024,
+                        uid=data.uid,
+                        addr=addr,
+                        conn=conn,
+                        audio=audio)
+                case _:
+                    logger.error(f'Unexpected tab: {tab}')
+    clients.remove(conn)
+    conn.close()
 if __name__ == '__main__':
     try:
-        chat = chatglm.ChatGLM('history_chat.npy')
-        say = speak.Yuyin('./model/whisper/medium.pt')
-        svc = vits.Phonetic_cloning()
+        say = speak.Yuyin()
         #host = '127.0.0.1'
-        host = '192.168.137.246'
+        host = '192.168.137.67'
         port = 11222
-        CHUNK = 1024
-        FORMAT = pyaudio.paInt16
-        CHANNELS = 1
-        RATE = 44100
-        RECORD_SECONDS = 5
-        WAVE_OUTPUT_FILENAME = "recording.wav"
         audio = comunication.Com(host, port)
+        def signal_handler(signal, frame):  
+            print('Stopping...')
+            audio.close_down()
+            sys.exit(0)
+        signal.signal(signal.SIGINT, signal_handler)
         while True:
             conn, addr = audio.s.accept()
             clients.append(conn)
-            client_thread = threading.Thread(target=start_main,args=(audio,chat,say,svc,conn,addr,))
+            client_thread = threading.Thread(target=start_main,args=(audio,say,conn,addr,))
             client_thread.start()
-        audio.close_down()
-        svc.clear()
     except Exception as e:
         logger.error(e)

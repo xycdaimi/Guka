@@ -1,6 +1,5 @@
 import asyncio
 import edge_tts
-import requests
 import simpleaudio
 
 class TTSController(object):
@@ -20,23 +19,22 @@ class TTSController(object):
         """Main function"""
         communicate = edge_tts.Communicate(text, self.__voice__)
         await communicate.save(self.__output_file__)
-
-    def speaking(self, text):
-        try:
-            self.__loop__.run_until_complete(self.amain(text))
-        finally:
-            self.__loop__.close()
-
-        # 播放音频
-        wave_obj = simpleaudio.WaveObject.from_wave_file(self.__output_file__)
-        play_obj = wave_obj.play()
-        play_obj.wait_done()
     
     def textToaudio(self, text):
         try:
             self.__loop__.run_until_complete(self.amain(text))
         finally:
             self.__loop__.close()
+    
+    def speaking(self, text):
+        try:
+            self.__loop__.run_until_complete(self.amain(text))
+        finally:
+            self.__loop__.close()
+        # 播放音频
+        wave_obj = simpleaudio.WaveObject.from_wave_file(self.__output_file__)
+        play_obj = wave_obj.play()
+        play_obj.wait_done()
 
 #if __name__ == "__main__":
 #    tts_controller = TTSController()

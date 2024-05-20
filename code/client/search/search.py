@@ -52,6 +52,7 @@ def find_file_path(filename, drives, progress_callback):
             for path in glob.iglob(os.path.join(drive, '**', filename), recursive=True):
                 return path
             progress_callback(i + 1)  # 更新进度条
+            QApplication.processEvents()
         return None
     except Exception as e:
         logger.error(e)
@@ -68,18 +69,15 @@ def json_file_paths(input_json_path, output_json_path):
 
         def update_progress(current):
             progress.progress.setValue(current * len(drives))  # 因为每个程序可能在多个驱动器上搜索，所以乘以驱动器数量来估算进度
-        delect = []
         for i, program in enumerate(data['programs']):
             exe_file = program['exe_file']
             file_path = find_file_path(exe_file, drives, update_progress)  # 传递更新进度的回调函数
             if file_path:
                 program['exe_file'] = file_path
             else:
-                delect.append(i)
                 program['exe_file'] = ''
             QApplication.processEvents()  # 处理事件队列中的事件，包括更新GUI
-        for i in delect:
-            del data['programs'][i]
+        data['programs'] = [program for program in data['programs'] if program['exe_file'] != '']
 
         progress.timer.stop()  # 确保进度条停止更新
         progress.accept()  # 关闭进度条弹窗

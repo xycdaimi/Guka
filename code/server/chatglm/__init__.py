@@ -1,1 +1,1 @@
-from .chatglm import *
+from chatglm import *

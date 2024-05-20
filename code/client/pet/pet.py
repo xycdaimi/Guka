@@ -1,59 +1,113 @@
 import json
-from log import log
-import comunication
-from pet import windowsApi
+from tool import windowsApi
+import log
 import keyboard
-import pyaudio
 import os
 import sys
 import random
-from PyQt5 import QtWidgets
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 import threading
-from pet import browser
+import comunication
+from liaotian import entrance
+from User import conversation
 logger = log.get_log(__name__)
 
+
+# 切分字符串换行
+def splice_chars(s):
+    result = ""
+    for i in range(0, len(s), 10):
+        chunk = s[i:i + 10]
+        result += chunk + "\n"
+    # 移除最后一个多余的换行符
+    if result and result[-1] == "\n":
+        result = result[:-1]
+    return result
+
+
+# 获取关键词中间的字符串
+def get_string_between(s, start_substring, end_substring):
+    # 查找起始子字符串的位置
+    start_index = s.find(start_substring) + len(start_substring)
+    # 如果起始子字符串不存在，返回None
+    if start_index == -1:
+        return None
+        # 查找结束子字符串的位置
+    end_index = s.find(end_substring, start_index)
+    # 如果结束子字符串不存在或者它在起始子字符串之前，返回None
+    if end_index == -1 or end_index <= start_index:
+        return None
+        # 返回两个子字符串之间的字符串
+    return s[start_index:end_index]
+
+
+# 获取关键词后面的字符串
+def get_string_after(s, target):
+    # 查找目标字符串的位置
+    index = s.find(target)
+    # 如果找到了目标字符串
+    if index != -1:
+        # 获取目标字符串后面的所有字符
+        return s[index + len(target):]
+    else:
+        # 如果没有找到目标字符串，返回空字符串
+        return ""
+
+
+# 获取关键词前面的字符串
+def get_string_before(s, target):
+    index = s.find(target)
+    if index != -1:
+        return s[:index]
+    else:
+        return None
+
+
+def get_file_path(app, path):
+    with open(path, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+    for program in data['programs']:
+        if program['program_name'].lower() == app.lower():
+            return program['exe_file']
+    return ""
+
+
 class DesktopPet(QWidget):
-    # region 初始化窗口
-    def __init__(self, host, port, chunk=1024,
-                 for_mat=pyaudio.paInt16,
-                 channels=1, rate=44100, parent=None, **kwargs):
+    def __init__(self, host, port, user, parent=None, **kwargs):
         try:
+            self.app = QApplication(sys.argv)
+            self.user = user
+            self.win = windowsApi.WindowsAPI()
+            self.step = None
             self.timer = None
             self.is_follow_mouse = None
-            self.win = windowsApi.WindowsAPI()
             self.host = host
             self.port = port
-            self.CHUNK = chunk
-            self.FORMAT = for_mat
-            self.CHANNELS = channels
-            self.RATE = rate
-            self.audio = None
             self.text = ''
             self.random_index = None
-            self.app = QApplication(sys.argv)
             super(DesktopPet, self).__init__(parent)
-            # 窗体初始化
-            self.init()
-            self.setShow = '隐藏'
-            self.walkOrStop = '原地不动'
-            # 托盘化初始
-            self.initPall()
-            # 宠物静态gif图加载
-            self.initPetImage()
-            t_audio = threading.Thread(target=self.audioToaudio)
-            t_audio.setDaemon(True)
-            t_audio.start()
-            # 宠物正常待机，实现随机切换动作
-            self.petNormalAction()
+            self.talk_entrance = entrance.MainWindow(self.host, self.port, self.user)
+            self.start_pet()
         except Exception as e:
             logger.error(e)
 
-    # endregion
+    def start_pet(self):
+        # 窗体初始化
+        self.init()
+        self.setShow = '隐藏'
+        self.walkOrStop = '原地不动'
+        # 托盘化初始
+        self.initPall()
+        # 宠物静态gif图加载
+        self.initPetImage()
+        audio_to_text = threading.Thread(target=self.audioTotext)
+        audio_to_text.setDaemon(True)
+        audio_to_text.start()
+        # 宠物正常待机，实现随机切换动作
+        self.petNormalAction()
 
-    # region 窗体初始化
     def init(self):
         try:
             # 初始化
@@ -71,13 +125,10 @@ class DesktopPet(QWidget):
         except Exception as e:
             logger.error(e)
 
-    # endregion
-
-    # region 托盘化设置初始化
     def initPall(self):
         try:
             # 导入准备在托盘化显示上使用的图标
-            icons = os.path.join('./pet/icon/icon.png')
+            icons = os.path.join('./resource/icon/icon.png')
             # 设置右键显示最小化的菜单项
             # 菜单项退出，点击后调用quit函数
             quit_action = QAction('退出', self, triggered=self.quit)
@@ -88,15 +139,17 @@ class DesktopPet(QWidget):
             # 菜单项自由走动，点击后调用walk函数
             self.walking = QAction(self.walkOrStop, self, triggered=self.walk)
             # 菜单项输入，点击后调用keyboard_input函数
-            keyboard_input = QAction('键盘输入', self, triggered=self.keyboard_input)
+            self.look = QAction('聊天界面', self, triggered=self.talk_look)
+            self.adding = QAction('添加应用', self, triggered=self.add_app)
             # 新建一个菜单项控件
             self.tray_icon_menu = QMenu(self)
             # 在菜单栏添加一个无子菜单的菜单项‘显示’
             self.tray_icon_menu.addAction(self.showing)
             # 在菜单栏添加一个无子菜单的菜单项‘自由走动’
             self.tray_icon_menu.addAction(self.walking)
-            # 在菜单栏添加一个无子菜单的菜单项‘输入’
-            self.tray_icon_menu.addAction(keyboard_input)
+            # 在菜单栏添加一个无子菜单的菜单项‘聊天界面’
+            self.tray_icon_menu.addAction(self.look)
+            self.tray_icon_menu.addAction(self.adding)
             # 在菜单栏添加一个无子菜单的菜单项‘退出’
             self.tray_icon_menu.addAction(quit_action)
             # QSystemTrayIcon类为应用程序在系统托盘中提供一个图标
@@ -110,9 +163,6 @@ class DesktopPet(QWidget):
         except Exception as e:
             logger.error(e)
 
-    # endregion
-
-    # region 宠物静态gif图加载初始化
     def initPetImage(self):
         try:
             # 对话框定义
@@ -122,7 +172,7 @@ class DesktopPet(QWidget):
             # 定义显示图片部分
             self.image = QLabel(self)
             # QMovie是一个可以存放动态视频的类，一般是配合QLabel使用的,可以用来存放GIF动态图
-            self.movie = QMovie("./pet/normal/eye.gif")
+            self.movie = QMovie("./resource/normal/eye.gif")
             # 设置标签大小
             self.movie.setScaledSize(QSize(200, 200))
             # 将Qmovie在定义的image中显示
@@ -137,17 +187,14 @@ class DesktopPet(QWidget):
             self.show()
             self.pet = [[], []]
             # 将宠物移动状态的动图放入pet中
-            for i in os.listdir("./pet/direction"):
-                self.pet[0].append("./pet/direction/" + i)
+            for i in os.listdir("./resource/direction"):
+                self.pet[0].append("./resource/direction/" + i)
             # 将宠物正常待机状态的对话放入pet2中
-            for i in os.listdir("./pet/normal"):
-                self.pet[1].append("./pet/normal/" + i)
+            for i in os.listdir("./resource/normal"):
+                self.pet[1].append("./resource/normal/" + i)
         except Exception as e:
-            logger.error(e)
+            logger(e)
 
-    # endregion
-
-    # region 宠物动作播放
     def petNormalAction(self):
         try:
             # 每隔一段时间做个动作
@@ -171,11 +218,8 @@ class DesktopPet(QWidget):
             # 宠物对话框
             self.talk()
         except Exception as e:
-            logger.error(e)
+            logger(e)
 
-    # endregion
-
-    # region 随机动作切换
     def randomAct(self):
         try:
             # condition记录宠物状态，宠物状态为0时，代表正常待机
@@ -210,7 +254,7 @@ class DesktopPet(QWidget):
                     self.movie.start()
             else:
                 # 读取特殊状态图片路径
-                self.movie = QMovie("./pet/click/click.gif")
+                self.movie = QMovie("./resource/click/click.gif")
                 # 宠物大小
                 self.movie.setScaledSize(QSize(200, 200))
                 # 将动画添加到label中
@@ -221,11 +265,8 @@ class DesktopPet(QWidget):
                 self.condition = 0
                 self.talk_condition = 0
         except Exception as e:
-            logger.error(e)
+            logger(e)
 
-    # endregion
-
-    # region 宠物对话框行为处理
     def talk(self):
         try:
             if not self.talk_condition:
@@ -254,11 +295,8 @@ class DesktopPet(QWidget):
                 # 设置为正常状态
                 self.talk_condition = 0
         except Exception as e:
-            logger.error(e)
+            logger(e)
 
-    # endregion
-
-    # region 宠物移动窗口
     def move_gif(self, gif_name, szx):
         try:
             if 'left' in gif_name:
@@ -281,11 +319,8 @@ class DesktopPet(QWidget):
                     self.xx = self.yy = 1
             self.animate_move()
         except Exception as e:
-            logger.error(e)
+            logger(e)
 
-    # endregion
-
-    # region 宠物移动动画切换选择
     def moveWidget(self):
         try:
             # 结束条件
@@ -303,27 +338,11 @@ class DesktopPet(QWidget):
 
             # 判断并重置
             if new_x <= 0:
-                now_name = './pet/direction/right.gif'
-                self.movie = QMovie(now_name)
-                if 0 < new_y < screen_height - self.height():
-                    szx = random.randint(1, 3)
-                elif new_y <= 0:
-                    szx = 3
-                else:
-                    szx = 1
-                self.step = 0
-                self.move_gif(now_name, szx)
+                now_name = './resource/direction/right.gif'
+                self.select_movie(new_y, now_name, screen_height)
             elif new_x >= screen_width - self.width():
-                now_name = './pet/direction/left.gif'
-                self.movie = QMovie(now_name)
-                if 0 < new_y < screen_height - self.height():
-                    szx = random.randint(1, 3)
-                elif new_y <= 0:
-                    szx = 3
-                else:
-                    szx = 1
-                self.step = 0
-                self.move_gif(now_name, szx)
+                now_name = './resource/direction/left.gif'
+                self.select_movie(new_y, now_name, screen_height)
             self.move(new_x, new_y)
             # 宠物大小
             self.movie.setScaledSize(QSize(200, 200))
@@ -332,11 +351,22 @@ class DesktopPet(QWidget):
             # 开始播放动画
             self.movie.start()
         except Exception as e:
+            logger(e)
+
+    def select_movie(self, new_y, now_name, screen_height):
+        try:
+            self.movie = QMovie(now_name)
+            if 0 < new_y < screen_height - self.height():
+                szx = random.randint(1, 3)
+            elif new_y <= 0:
+                szx = 3
+            else:
+                szx = 1
+            self.step = 0
+            self.move_gif(now_name, szx)
+        except Exception as e:
             logger.error(e)
 
-    # endregion
-
-    # region 播放定时器设置
     def animate_move(self):
         try:
             # 计时器
@@ -351,19 +381,60 @@ class DesktopPet(QWidget):
         except Exception as e:
             logger.error(e)
 
-    # endregion
-
-    # region 宠物程序退出
     def quit(self):
         try:
+            self.talk_entrance.close()
             self.close()
-            sys.exit()
+            sys.exit(0)
         except Exception as e:
-            logger.error(e)
+            logger(e)
 
-    # endregion
+    def select_file(self):
+        file_dialog = QFileDialog()
+        file_dialog.setFileMode(QFileDialog.AnyFile)
+        file_dialog.setNameFilter("Executable Files (*.exe)")
+        file_path, _ = file_dialog.getOpenFileName(None, "选择可执行文件", "", "Executable Files (*.exe)")
+        if file_path:
+            self.line_edit_path.setText(file_path)
 
-    # region 宠物显示设置
+    def handle_ok(self, dialog, line_edit_name):
+        file_path = self.line_edit_path.text()
+        file_name = line_edit_name.text()
+        if not file_path or not file_name:
+            QMessageBox.warning(dialog, '警告', '文件路径和名称不能为空！')
+            return
+            # 在这里处理文件路径和名称，例如打印它们或进行其他操作
+        program = {'program_name': file_name, 'exe_file': file_path}
+        with open('./resource/paths.json', 'r', encoding='utf-8') as file:
+            data = json.load(file)
+        data['programs'].append(program)
+        with open('./resource/paths.json', 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        dialog.accept()
+
+    def add_app(self):
+        # 创建弹窗
+        dialog = QDialog()
+        dialog.setWindowTitle('文件选择与命名')
+        # 创建布局
+        layout = QVBoxLayout(dialog)
+        # 文件路径输入框
+        self.line_edit_path = QLineEdit(dialog)
+        layout.addWidget(self.line_edit_path)
+        # 文件名输入框
+        line_edit_name = QLineEdit(dialog)
+        layout.addWidget(line_edit_name)
+        # 选择文件按钮
+        button_select = QPushButton('选择文件', dialog)
+        button_select.clicked.connect(self.select_file)
+        layout.addWidget(button_select)
+        # 确定按钮
+        button_ok = QPushButton('确定', dialog)
+        button_ok.clicked.connect(lambda: self.handle_ok(dialog, line_edit_name))
+        layout.addWidget(button_ok)
+        # 显示弹窗
+        dialog.exec_()
+
     def showwin(self):
         try:
             # setWindowOpacity（）设置窗体的透明度，通过调整窗体透明度实现宠物的展示和隐藏
@@ -376,11 +447,8 @@ class DesktopPet(QWidget):
                 self.setShow = '隐藏'
                 self.showing.setText(self.setShow)
         except Exception as e:
-            logger.error(e)
+            logger(e)
 
-    # endregion
-
-    # region 宠物走动设置
     def walk(self):
         try:
             # 将宠物自由走动状态的动图放入pet1中
@@ -397,9 +465,6 @@ class DesktopPet(QWidget):
         except Exception as e:
             logger.error(e)
 
-    # endregion
-
-    # region 宠物初始位置随机设置
     def randomPosition(self):
         try:
             screen_geo = QDesktopWidget().screenGeometry()
@@ -410,9 +475,6 @@ class DesktopPet(QWidget):
         except Exception as e:
             logger.error(e)
 
-    # endregion
-
-    # region 宠物拖动实现
     # 鼠标左键按下时, 宠物将和鼠标位置绑定
     def mousePressEvent(self, event):
         try:
@@ -456,7 +518,7 @@ class DesktopPet(QWidget):
             self.timer.stop()
             self.randomAct()
             self.petNormalAction()
-            # 鼠标图形设置为箭头
+            # 鼠标图形设置为箭头key
             self.setCursor(QCursor(Qt.ArrowCursor))
         except Exception as e:
             logger.error(e)
@@ -469,9 +531,6 @@ class DesktopPet(QWidget):
         except Exception as e:
             logger.error(e)
 
-    # endregion
-
-    # region 宠物右键菜单
     def contextMenuEvent(self, event):
         try:
             # 定义菜单
@@ -480,313 +539,73 @@ class DesktopPet(QWidget):
             hide = menu.addAction(self.setShow)
             # 菜单项自由走动，点击后调用walk函数
             walk = menu.addAction(self.walkOrStop)
-            # 菜单项输入，点击后调用keyboard_input函数
-            keyboard_input = menu.addAction("键盘输入")
+            talkLook = menu.addAction("聊天界面")
+            addapp = menu.addAction("添加应用")
             quitAction = menu.addAction("退出")
-            # 使用exec_()方法显示菜单。从鼠标右键事件对象中获得当前坐标。mapToGlobal()方法把当前组件的相对坐标转换为窗口（window）的绝对坐标。
+            # 使用exec_()方法显示菜单。从鼠标右键事件对象中获得当前坐标。mapToGlobal()
+            # 方法把当前组件的相对坐标转换为窗口（window）的绝对坐标。
             action = menu.exec_(self.mapToGlobal(event.pos()))
             # 点击事件为退出
             if action == quitAction:
                 self.close()
                 sys.exit()
             # 点击事件为隐藏
-            if action == hide:
+            elif action == hide:
                 # 通过设置透明度方式隐藏宠物
                 self.showwin()
             # 点击事件为自由走动
-            if action == walk:
+            elif action == walk:
                 self.walk()
-            # 点击事件为键盘输入
-            if action == keyboard_input:
-                self.keyboard_input()
+            elif action == addapp:
+                self.add_app()
+            elif action == talkLook:
+                self.talk_look()
         except Exception as e:
             logger.error(e)
 
-    # endregion
-
-    # region 辅助函数
-    # 切分字符串换行
-    def splice_chars(self, s):
-        result = ""
-        for i in range(0, len(s), 10):
-            chunk = s[i:i + 10]
-            result += chunk + "\n"
-        # 移除最后一个多余的换行符
-        if result and result[-1] == "\n":
-            result = result[:-1]
-        return result
-
-    # 获取关键词中间的字符串
-    def get_string_between(self, s, start_substring, end_substring):
-        # 查找起始子字符串的位置
-        start_index = s.find(start_substring) + len(start_substring)
-        # 如果起始子字符串不存在，返回None
-        if start_index == -1:
-            return None
-            # 查找结束子字符串的位置
-        end_index = s.find(end_substring, start_index)
-        # 如果结束子字符串不存在或者它在起始子字符串之前，返回None
-        if end_index == -1 or end_index <= start_index:
-            return None
-            # 返回两个子字符串之间的字符串
-        return s[start_index:end_index]
-
-    # 获取关键词后面的字符串
-    def get_string_after(self, s, target):
-        # 查找目标字符串的位置
-        index = s.find(target)
-        # 如果找到了目标字符串
-        if index != -1:
-            # 获取目标字符串后面的所有字符
-            return s[index + len(target):]
-        else:
-            # 如果没有找到目标字符串，返回空字符串
-            return ""
-
-    # 获取关键词前面的字符串
-    def get_string_before(self, s, target):
-        index = s.find(target)
-        if index != -1:
-            return s[:index]
-        else:
-            return None
-
-    def get_file_path(self, app, path):
-        with open(path, 'r', encoding='utf-8') as file:
-            data = json.load(file)
-        for program in data['programs']:
-            if program['program_name'].lower() == app.lower():
-                return program['exe_file']
-        return ""
-
-    # endregion
-
-    # region 键盘交互
-    def keyboard_input(self):
+    def talk_look(self):
         try:
-            input_dialog = QtWidgets.QInputDialog(self)
-            input_dialog.setInputMode(QInputDialog.TextInput)
-            input_dialog.setWindowTitle('键盘交互')
-            input_dialog.setLabelText('请输入')
-            # input_dialog.textValueChanged.connect('输入框 发生变化时 响应')
-            # 设置 输入对话框大小
-            input_dialog.setFixedSize(500, 100)
-            input_dialog.show()
-            screen = self.app.primaryScreen()
-            screen_geometry = screen.geometry()
-            screen_width = screen_geometry.width()
-            screen_height = screen_geometry.height()
-            # 设置位置在中间
-            input_dialog.move((screen_width / 2) - 250, (screen_height / 2) - 50)
-            if input_dialog.exec_() == input_dialog.Accepted:
-                # 点击ok 后 获取输入对话框内容
-                textInput = input_dialog.textValue()
-                if '重启电脑' in textInput:
-                    self.win.restart_computer()
-                elif '关闭电脑' in textInput:
-                    self.win.close_computer()
-                elif '锁定电脑' in textInput:
-                    self.win.lock_computer()
-                elif '删除' in textInput and '文件' in textInput:
-                    res = self.get_string_between(textInput, '删除', '文件')
-                    t = threading.Thread(target=self.win.delete_file, args=(res,))
-                    t.start()
-                elif '复制' in textInput and '文件到' in textInput:
-                    start_copy = self.get_string_between(textInput, '复制', '文件到')
-                    target = self.get_string_after(textInput, '文件到')
-                    t = threading.Thread(target=self.win.copy_file, args=(start_copy, target,))
-                    t.start()
-                elif '现在时间' in textInput:
-                    te = '当前时间：' + self.win.get_local_time()
-                    t = threading.Thread(target=self.textTotextToaudio, args=(te, 1,))
-                    t.start()
-                elif '杀死进程号' in textInput:
-                    pid = self.get_string_after(textInput, '杀死进程号')
-                    self.win.kill_process_by_pid(pid)
-                elif '杀死进程名' in textInput:
-                    name = self.get_string_after(textInput, '杀死进程名')
-                    self.win.kill_process_by_name(name)
-                elif '音量放大' in textInput:
-                    self.win.get_default_audio_volume('音量放大')
-                elif '音量减小' in textInput:
-                    self.win.get_default_audio_volume('音量减小')
-                elif '静音' in textInput:
-                    self.win.get_default_audio_volume('静音')
-                elif '音量最大' in textInput:
-                    self.win.get_default_audio_volume('音量最大')
-                elif '打开视频' in textInput:
-                    file = self.get_string_after(textInput, '打开视频')
-                    t = threading.Thread(target=self.win.open_video, args=(file,))
-                    t.start()
-                elif '打开' in textInput:
-                    res = self.get_string_after(textInput, '打开')
-                    path = self.get_file_path(res, 'paths.json')
-                    if path == "":
-                        t = threading.Thread(target=self.textTotextToaudio,
-                                             args=('主人，列表中没有这个应用，我无法打开它。', 1,))
-                        t.start()
-                    else:
-                        self.win.open_software(path)
-                        t = threading.Thread(target=self.textTotextToaudio,
-                                             args=('已经为您打开' + res, 1,))
-                        t.start()
-                elif '点' in textInput and '提醒我' in textInput:
-                    if '分' in textInput:
-                        txt = self.get_string_before(textInput, '分') + '分'
-                    else:
-                        txt = self.get_string_before(textInput, '点') + '点'
-                    tark = self.get_string_after(textInput, '提醒我')
-                    if txt and tark:
-                        t = threading.Thread(target=self.notebooktime, args=(txt, tark,))
-                        t.start()
-                    else:
-                        t = threading.Thread(target=self.textTotextToaudio,
-                                             args=('主人，我没有听清楚，能再说一遍吗？', 1,))
-                        t.start()
-                elif '搜索' in textInput:
-                    txt = self.get_string_after(textInput, '搜索')
-                    url = "https://www.baidu.com/s?wd=" + txt
-                    brow = browser.MainWindow(url)
-                    brow.show()
-                    # t = threading.Thread(target=self.win.baidu_search, args=(txt,))
-                    # t.start()
-                elif '回来' == textInput:
-                    screen = QDesktopWidget().screenGeometry()
-                    # 计算屏幕中心坐标
-                    center_x = screen.width() / 2
-                    center_y = screen.height() / 2
-                    self.move(center_x, center_y)
-                else:
-                    tt = threading.Thread(target=self.textTotextToaudio, args=(textInput,))
-                    tt.start()
-
+            self.talk_entrance.show()
         except Exception as e:
             logger.error(e)
 
-    # endregion
 
-    # region 语音交互
-    def audioToaudio(self):
-        try:
+    def audioTotext(self):
+        while True:
+            logger.info("Press 'alt' + 'q' to start recording...")
             while True:
-                logger.info("Press 'alt' + 'q' to start recording...")
-                while True:
-                    if keyboard.is_pressed('alt') and keyboard.is_pressed('q'):
-                        logger.info("Recording...")
-                        self.audio = comunication.Com(self.host, self.port, self.CHUNK, self.FORMAT, self.CHANNELS,
-                                                      self.RATE)
-                        break
-                self.audio.run_audio()
-                datatype, textInput = self.audio.receive_data()
-                if '重启电脑' in textInput:
-                    self.win.restart_computer()
-                elif '关闭电脑' in textInput:
-                    self.win.close_computer()
-                elif '锁定电脑' in textInput:
-                    self.win.lock_computer()
-                elif '现在时间' in textInput:
-                    te = '当前时间：' + self.win.get_local_time()
-                    t = threading.Thread(target=self.textTotextToaudio, args=(te,1,))
-                    t.start()
-                elif '杀死进程号' in textInput:
-                    pid = self.get_string_after(textInput, '杀死进程号')
-                    self.win.kill_process_by_pid(pid)
-                elif '杀死进程名' in textInput:
-                    name = self.get_string_after(textInput, '杀死进程名')
-                    self.win.kill_process_by_name(name)
-                elif '音量放大' in textInput:
-                    self.win.get_default_audio_volume('音量放大')
-                elif '音量减小' in textInput:
-                    self.win.get_default_audio_volume('音量减小')
-                elif '关闭声音' in textInput:
-                    self.win.get_default_audio_volume('静音')
-                elif '音量最大' in textInput:
-                    self.win.get_default_audio_volume('音量最大')
-                elif '打开' in textInput:
-                    res = self.get_string_after(textInput, '打开')
-                    path = self.get_file_path(res, 'paths.json')
-                    if path == "":
-                        t = threading.Thread(target=self.textTotextToaudio,
-                                             args=('主人，列表中没有这个应用，我无法打开它。', 1,))
-                        t.start()
-                    else:
-                        self.win.open_software(path)
-                        t = threading.Thread(target=self.textTotextToaudio,
-                                             args=('已经为您打开' + res, 1,))
-                        t.start()
-                elif '点' in textInput and '提醒我' in textInput:
-                    if '分' in textInput:
-                        txt = self.get_string_before(textInput, '分') + '分'
-                    else:
-                        txt = self.get_string_before(textInput, '点') + '点'
-                    tark = self.get_string_after(textInput, '提醒我')
-                    if txt and tark:
-                        t = threading.Thread(target=self.notebooktime, args=(txt, tark,))
-                        t.start()
-                    else:
-                        t = threading.Thread(target=self.textTotextToaudio,
-                                             args=('主人，我没有听清楚，能再说一遍吗？', 1,))
-                        t.start()
-                elif '回来' == textInput:
-                    screen = QDesktopWidget().screenGeometry()
-                    # 计算屏幕中心坐标
-                    center_x = screen.width() / 2
-                    center_y = screen.height() / 2
-                    self.move(center_x, center_y)
-                else:
-                    self.audio.send_data(b'ok')
-                    data_type, data = self.audio.receive_data()
-                    self.audio.ser_back = data
-                    # data_type, data = self.audio.receive_data()
-                    # audio_guka = data
-                    if len(self.audio.ser_back) < 30:
-                        self.text = self.audio.ser_back
-                        self.talk()
-                    else:
-                        win_txt = threading.Thread(target=self.win.dialog_txt, args=(self.audio.ser_back,))
-                        win_txt.start()
-                    t = threading.Thread(target=self.soundAudio, args=())
-                    t.start()
-        except Exception as e:
-            logger.error(e)
-
-    # endregion
-
-    # region 事件提醒
-    def notebooktime(self, target_time_str, task):
-        self.textTotextToaudio('好的，我会在'+target_time_str+'提醒您。', 1)
-        text = self.win.wait_until_time(target_time_str, task)
-        self.textTotextToaudio(text, 1)
-    # endregion
-
-    # region 播放音频
-    def soundAudio(self):
-        try:
-            while True:
-                # data_type, data = self.audio.receive_data()
-                data = self.audio.s.recv(1024)
-                if not data:
-                    break  # 没有更多数据，退出循环
-                # 将接收到的数据写入流进行播放（注意：这里假设音频数据已经是PCM格式）
-                self.audio.write_audio(data)
-            self.text = ''
-        except Exception as e:
-            logger.error(e)
-    # endregion
-
-    # region 键盘交互聊天
-    def textTotextToaudio(self, text, flag=0):
-        self.audio = comunication.Com(self.host, self.port, self.CHUNK, self.FORMAT, self.CHANNELS, self.RATE)
-        if flag:
-            self.text = self.audio.run_str(text, b'dq')
-        else:
-            txt = self.audio.run_str(text)
-            if len(txt) <= 30:
-                self.text = self.audio.ser_back
-                self.talk()
+                if keyboard.is_pressed('alt') and keyboard.is_pressed('q'):
+                    self.talk_entrance.audio = comunication.Com(self.host, self.port)
+                    logger.info("Recording...")
+                    break
+            input_text = self.talk_entrance.audio.read_audio()
+            logger.info(input_text)
+            self.talk_entrance.audio.close_down()
+            if '切换功能' in input_text:
+                self.talk_entrance.mode = '🛠️ Tool'
+            elif '切换聊天' in input_text:
+                self.talk_entrance.mode = '💬 Chat'
+            elif '切换代码' in input_text:
+                self.talk_entrance.mode = '🧑‍💻 Code Interpreter'
+            elif '回来' == input_text:
+                screen = QDesktopWidget().screenGeometry()
+                # 计算屏幕中心坐标
+                center_x = screen.width() / 2
+                center_y = screen.height() / 2
+                self.move(center_x, center_y)
+            elif '音量放大' in input_text:
+                self.win.get_default_audio_volume('音量放大')
+            elif '音量减小' in input_text:
+                self.win.get_default_audio_volume('音量减小')
+            elif '静音' in input_text:
+                self.win.get_default_audio_volume('静音')
+            elif '音量最大' in input_text:
+                self.win.get_default_audio_volume('音量最大')
+            elif '立即关机' in input_text:
+                self.win.close_computer()
+            elif '取消关机' in input_text:
+                self.win.unclose_computer()
             else:
-                win_txt = threading.Thread(target=self.win.dialog_txt, args=(self.audio.ser_back,))
-                win_txt.start()
-        t = threading.Thread(target=self.soundAudio, args=())
-        t.start()
-    # endregion
+                # self.talk_entrance.show()
+                self.talk_entrance.plainTextEdit.setPlainText(input_text)
+                self.talk_entrance.pushButton.click()

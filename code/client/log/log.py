@@ -7,7 +7,7 @@ APP_LOGGER_NAME = "Guka"
 
 def setup_log(logger_name=APP_LOGGER_NAME, file_name=None):
     logger = logging.getLogger(logger_name)
-    logger.setLevel(logging.WARNING)
+    logger.setLevel(logging.INFO)
     formatter = logging.Formatter(
         "%(asctime)s | %(name)s | %(filename)s[line:%(lineno)d] |  %(levelname)s: %(message)s |  %(funcName)s"
     )

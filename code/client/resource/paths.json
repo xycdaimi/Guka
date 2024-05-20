@@ -1,0 +1,36 @@
+{
+    "programs": [
+        {
+            "exe_file": "A:\\qq\\Bin\\QQScLauncher.exe",
+            "program_name": "QQ"
+        },
+        {
+            "exe_file": "A:\\wechat\\WeChat.exe",
+            "program_name": "微信"
+        },
+        {
+            "exe_file": "A:\\钉钉\\DingDing\\DingtalkLauncher.exe",
+            "program_name": "钉钉"
+        },
+        {
+            "exe_file": "D:\\wegame\\wegame.exe",
+            "program_name": "WeGame"
+        },
+        {
+            "exe_file": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+            "program_name": "浏览器"
+        },
+        {
+            "exe_file": "D:\\steam\\steam.exe",
+            "program_name": "Steam"
+        },
+        {
+            "exe_file": "D:\\百度网盘\\BaiduNetdisk\\BaiduNetdisk.exe",
+            "program_name": "百度网盘"
+        },
+        {
+            "exe_file": "A:\\网易云\\CloudMusic\\cloudmusic.exe",
+            "program_name": "网易云音乐"
+        }
+    ]
+}

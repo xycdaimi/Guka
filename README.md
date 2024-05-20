@@ -8,25 +8,19 @@
 
 ## 完整演示视频
 
-链接：https://pan.baidu.com/s/130gCFdMjrkRXIv4uA2mClA?fid=402721398545105
+链接：https://pan.baidu.com/s/1AWvtbsq4NuiLGAl6h2ohuw?pwd=guka 
+提取码：guka 
 
 ## 模型文件
 
 ### chatglm
 
-   选择一种模型放到server/model文件夹里，再将模型调用的路径改一下
+   模型放到server/model/ChatGLM3文件夹里，再将模型调用的路径改一下
 
-#### chatglm-6b
+#### chatglm3-6b
 
-链接：https://pan.baidu.com/s/1onhN8IvCDShlvITvNmtCXA 
+链接：https://pan.baidu.com/s/1yq9RzsfIN-wNVXEcI8LOqQ?pwd=guka 
 提取码：guka 
---来自百度网盘超级会员V1的分享
-
-#### chatglm2-6b
-
-链接：https://pan.baidu.com/s/1ZQf9OAd9_djecA1qdPpYkg 
-提取码：guka 
---来自百度网盘超级会员V2的分享
 
 ### so-vits-svc
 

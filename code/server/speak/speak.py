@@ -3,7 +3,7 @@ logger = log.get_log(__name__)
 import whisper
 from zhconv import convert
 class Yuyin(object):
-    def __init__(self, file_path):
+    def __init__(self, file_path='./model/whisper/medium.pt'):
         try:
             self.model = whisper.load_model(file_path)
             logger.info('语音识别模型初始化完成')
