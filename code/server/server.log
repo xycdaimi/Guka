@@ -1,0 +1,354 @@
+Traceback (most recent call last):
+  File "/home/daimi/miniconda3/envs/chatglm3-demo/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/home/daimi/miniconda3/envs/chatglm3-demo/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/daimi/Desktop/demo/chatglm/demo_chat.py", line 36, in text_to_audio
+    audio.send_data(conn, comunication.AUDIO, res)
+  File "/home/daimi/Desktop/demo/comunication/comunication.py", line 34, in send_data
+    conn.sendall(struct.pack('!I', data_type))
+OSError: [Errno 9] Bad file descriptor
+
+2024-08-04 15:54:40,070 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 15:55:08,707 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 50586).wav has been deleted. |  remove_file
+2024-08-04 15:55:17,483 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 50590).wav has been deleted. |  remove_file
+2024-08-04 15:55:17,485 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 15:56:37,465 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 16:09:15,047 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 16:09:51,508 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 50766).wav has been deleted. |  remove_file
+2024-08-04 16:10:16,891 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 16:10:16,891 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 50772).wav has been deleted. |  remove_file
+2024-08-04 16:11:32,889 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 16:19:49,500 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 16:20:10,421 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 50918).wav has been deleted. |  remove_file
+2024-08-04 16:20:20,160 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 50923).wav has been deleted. |  remove_file
+2024-08-04 16:20:20,160 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 16:23:59,234 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 17:08:18,660 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 17:09:37,632 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51453).wav has been deleted. |  remove_file
+2024-08-04 17:09:46,765 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 17:09:46,765 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51455).wav has been deleted. |  remove_file
+2024-08-04 17:13:22,867 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 17:21:22,938 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 17:22:07,686 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51583).wav has been deleted. |  remove_file
+2024-08-04 17:22:18,170 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 17:22:18,170 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51587).wav has been deleted. |  remove_file
+2024-08-04 17:26:51,028 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 17:27:14,718 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51636).wav has been deleted. |  remove_file
+2024-08-04 17:27:23,849 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 17:27:23,849 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51638).wav has been deleted. |  remove_file
+2024-08-04 17:27:30,860 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 17:31:03,920 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 17:32:02,591 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51713).wav has been deleted. |  remove_file
+2024-08-04 17:32:13,240 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 17:32:13,241 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51716).wav has been deleted. |  remove_file
+2024-08-04 17:39:41,392 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 17:40:16,984 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51817).wav has been deleted. |  remove_file
+2024-08-04 17:40:42,691 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 17:40:42,691 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51819).wav has been deleted. |  remove_file
+2024-08-04 17:40:48,709 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 17:44:30,245 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 17:45:37,386 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51861).wav has been deleted. |  remove_file
+2024-08-04 17:45:46,926 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 17:45:46,926 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51876).wav has been deleted. |  remove_file
+2024-08-04 17:45:52,860 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 17:45:54,743 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 17:45:56,678 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 17:48:08,546 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 17:48:49,474 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51895).wav has been deleted. |  remove_file
+2024-08-04 17:48:58,313 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 17:48:58,314 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51896).wav has been deleted. |  remove_file
+2024-08-04 17:49:04,646 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 17:49:06,750 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 17:49:18,694 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 17:59:13,232 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 17:59:26,334 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51992).wav has been deleted. |  remove_file
+2024-08-04 17:59:33,016 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 51994).wav has been deleted. |  remove_file
+2024-08-04 17:59:33,031 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 17:59:38,792 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 17:59:40,840 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 17:59:42,907 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 18:04:20,015 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 18:04:54,629 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52071).wav has been deleted. |  remove_file
+2024-08-04 18:05:02,138 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52072).wav has been deleted. |  remove_file
+2024-08-04 18:05:02,161 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 18:05:07,699 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 18:05:09,813 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 18:05:11,980 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 18:06:49,997 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 18:07:04,659 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52100).wav has been deleted. |  remove_file
+2024-08-04 18:07:12,337 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52101).wav has been deleted. |  remove_file
+2024-08-04 18:07:12,353 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 18:07:18,011 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 18:07:19,506 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 18:07:21,234 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 18:10:12,687 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 18:10:45,228 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52132).wav has been deleted. |  remove_file
+2024-08-04 18:10:54,620 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52134).wav has been deleted. |  remove_file
+2024-08-04 18:10:54,626 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 18:11:00,623 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 18:11:02,378 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 18:11:04,423 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 18:16:27,019 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 18:17:30,300 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52211).wav has been deleted. |  remove_file
+2024-08-04 18:17:40,464 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 18:17:40,464 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52213).wav has been deleted. |  remove_file
+2024-08-04 18:17:45,997 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 18:17:48,011 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 18:17:50,490 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 18:27:13,065 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52469).wav has been deleted. |  remove_file
+2024-08-04 18:27:20,437 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 18:27:20,437 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52475).wav has been deleted. |  remove_file
+2024-08-04 18:27:23,443 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 18:27:25,522 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 18:27:27,633 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 18:40:13,844 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52713).wav has been deleted. |  remove_file
+2024-08-04 18:40:22,239 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 18:40:22,239 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52729).wav has been deleted. |  remove_file
+2024-08-04 18:40:25,305 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 18:40:27,211 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 18:40:29,391 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 18:43:22,316 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52794).wav has been deleted. |  remove_file
+2024-08-04 18:43:31,163 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 18:43:31,163 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52795).wav has been deleted. |  remove_file
+2024-08-04 18:43:34,167 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 18:43:36,147 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 18:43:38,199 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 18:44:43,967 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52808).wav has been deleted. |  remove_file
+2024-08-04 18:45:12,815 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52811).wav has been deleted. |  remove_file
+2024-08-04 18:46:01,174 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52817).wav has been deleted. |  remove_file
+2024-08-04 18:46:03,674 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52820).wav has been deleted. |  remove_file
+2024-08-04 18:48:26,419 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52848).wav has been deleted. |  remove_file
+2024-08-04 18:50:08,468 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 52855).wav has been deleted. |  remove_file
+2024-08-04 19:20:43,867 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 19:21:00,886 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53305).wav has been deleted. |  remove_file
+2024-08-04 19:21:09,055 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:21:09,055 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53307).wav has been deleted. |  remove_file
+2024-08-04 19:21:15,115 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:21:16,830 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:21:18,806 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:22:31,876 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53318).wav has been deleted. |  remove_file
+2024-08-04 19:22:44,599 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:22:44,599 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53325).wav has been deleted. |  remove_file
+2024-08-04 19:22:47,465 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:22:49,523 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:22:51,563 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:27:13,479 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 19:27:52,671 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53383).wav has been deleted. |  remove_file
+2024-08-04 19:28:33,241 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53388).wav has been deleted. |  remove_file
+2024-08-04 19:28:33,244 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:28:39,577 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:28:41,880 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:28:44,594 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:31:54,037 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53455).wav has been deleted. |  remove_file
+2024-08-04 19:32:04,335 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53456).wav has been deleted. |  remove_file
+2024-08-04 19:32:04,351 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:32:07,373 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:32:09,355 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:32:11,393 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:38:17,361 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 19:38:35,645 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53591).wav has been deleted. |  remove_file
+2024-08-04 19:38:45,887 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:38:45,887 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53592).wav has been deleted. |  remove_file
+2024-08-04 19:38:52,023 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:38:53,837 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:38:56,664 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:39:29,061 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53602).wav has been deleted. |  remove_file
+2024-08-04 19:39:38,316 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:39:38,317 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53603).wav has been deleted. |  remove_file
+2024-08-04 19:39:41,374 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:39:43,308 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:39:45,394 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:42:15,674 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53699).wav has been deleted. |  remove_file
+2024-08-04 19:42:23,182 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:42:23,183 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53701).wav has been deleted. |  remove_file
+2024-08-04 19:42:26,141 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:42:28,159 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:42:30,266 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:47:12,060 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53752).wav has been deleted. |  remove_file
+2024-08-04 19:47:20,663 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:47:20,663 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53753).wav has been deleted. |  remove_file
+2024-08-04 19:47:23,778 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:47:25,695 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:47:27,794 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:48:33,093 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53759).wav has been deleted. |  remove_file
+2024-08-04 19:48:33,114 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '帮我解释一下，高考是什么', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:48:40,643 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:48:42,536 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:48:45,270 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:48:47,511 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/3.wav has been deleted. |  remove_file
+2024-08-04 19:48:49,553 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/4.wav has been deleted. |  remove_file
+2024-08-04 19:49:47,918 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53771).wav has been deleted. |  remove_file
+2024-08-04 19:49:57,069 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53772).wav has been deleted. |  remove_file
+2024-08-04 19:49:57,085 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:50:00,035 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:50:02,135 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:50:04,293 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:54:59,294 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53808).wav has been deleted. |  remove_file
+2024-08-04 19:55:07,187 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:55:07,187 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53811).wav has been deleted. |  remove_file
+2024-08-04 19:55:10,299 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:55:12,497 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:55:14,514 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:55:40,080 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '背一首白居易的诗', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:55:40,080 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53815).wav has been deleted. |  remove_file
+2024-08-04 19:55:48,898 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:55:50,819 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:55:52,564 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:55:54,664 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/3.wav has been deleted. |  remove_file
+2024-08-04 19:55:56,651 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/4.wav has been deleted. |  remove_file
+2024-08-04 19:55:58,642 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/5.wav has been deleted. |  remove_file
+2024-08-04 19:56:00,925 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/6.wav has been deleted. |  remove_file
+2024-08-04 19:56:02,820 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/7.wav has been deleted. |  remove_file
+2024-08-04 19:56:43,262 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 19:56:43,262 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53837).wav has been deleted. |  remove_file
+2024-08-04 19:56:46,265 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 19:56:48,275 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 19:56:50,490 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 19:59:34,380 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 20:00:01,386 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53877).wav has been deleted. |  remove_file
+2024-08-04 20:00:12,982 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:00:12,982 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53881).wav has been deleted. |  remove_file
+2024-08-04 20:00:19,128 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:00:20,963 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:00:23,164 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:00:46,672 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '背一首李白的诗', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:00:46,672 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 53885).wav has been deleted. |  remove_file
+2024-08-04 20:00:51,829 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:00:53,734 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:00:55,575 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:00:57,893 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/3.wav has been deleted. |  remove_file
+2024-08-04 20:12:30,145 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54036).wav has been deleted. |  remove_file
+2024-08-04 20:12:41,747 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54037).wav has been deleted. |  remove_file
+2024-08-04 20:12:41,749 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:12:45,138 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:12:47,323 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:12:49,464 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:13:10,727 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '背一首李清照的诗', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:13:10,727 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54044).wav has been deleted. |  remove_file
+2024-08-04 20:13:18,331 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:13:20,440 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:13:22,392 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:13:24,347 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/3.wav has been deleted. |  remove_file
+2024-08-04 20:13:26,181 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/4.wav has been deleted. |  remove_file
+2024-08-04 20:13:27,767 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/5.wav has been deleted. |  remove_file
+2024-08-04 20:13:29,676 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/6.wav has been deleted. |  remove_file
+2024-08-04 20:15:27,397 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54082).wav has been deleted. |  remove_file
+2024-08-04 20:15:40,747 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:15:40,748 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54083).wav has been deleted. |  remove_file
+2024-08-04 20:15:45,092 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:15:47,039 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:15:49,036 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:16:21,757 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54088).wav has been deleted. |  remove_file
+2024-08-04 20:16:21,772 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '背一首杜甫的诗', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:16:30,014 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:16:31,869 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:16:33,880 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:16:35,844 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/3.wav has been deleted. |  remove_file
+2024-08-04 20:16:37,575 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/4.wav has been deleted. |  remove_file
+2024-08-04 20:16:39,827 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/5.wav has been deleted. |  remove_file
+2024-08-04 20:16:41,871 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/6.wav has been deleted. |  remove_file
+2024-08-04 20:16:43,633 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/7.wav has been deleted. |  remove_file
+2024-08-04 20:18:26,377 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54122).wav has been deleted. |  remove_file
+2024-08-04 20:18:40,870 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:18:40,870 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54124).wav has been deleted. |  remove_file
+2024-08-04 20:18:44,431 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:18:46,250 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:18:48,262 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:19:17,428 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '背一首曾岑', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:19:17,428 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54131).wav has been deleted. |  remove_file
+2024-08-04 20:19:23,475 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:19:25,535 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:19:27,597 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:19:29,757 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/3.wav has been deleted. |  remove_file
+2024-08-04 20:20:49,783 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54171).wav has been deleted. |  remove_file
+2024-08-04 20:20:59,215 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:20:59,215 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54174).wav has been deleted. |  remove_file
+2024-08-04 20:21:02,495 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:21:04,324 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:21:06,387 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:21:42,873 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54190).wav has been deleted. |  remove_file
+2024-08-04 20:21:42,889 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '背一首赠汪伦', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:21:51,571 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:21:53,530 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:21:55,560 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:21:57,508 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/3.wav has been deleted. |  remove_file
+2024-08-04 20:21:59,396 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/4.wav has been deleted. |  remove_file
+2024-08-04 20:22:01,527 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/5.wav has been deleted. |  remove_file
+2024-08-04 20:22:03,289 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/6.wav has been deleted. |  remove_file
+2024-08-04 20:22:05,707 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/7.wav has been deleted. |  remove_file
+2024-08-04 20:23:26,486 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 20:23:37,822 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54210).wav has been deleted. |  remove_file
+2024-08-04 20:23:46,539 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:23:46,539 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54211).wav has been deleted. |  remove_file
+2024-08-04 20:23:54,887 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:24:23,199 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': 'lstm是什么', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:24:23,199 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54213).wav has been deleted. |  remove_file
+2024-08-04 20:24:34,882 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:24:38,157 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:27:15,131 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '编一段200字的故事', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:27:15,132 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54248).wav has been deleted. |  remove_file
+2024-08-04 20:27:26,938 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:27:33,026 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:27:35,569 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:27:37,972 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/3.wav has been deleted. |  remove_file
+2024-08-04 20:27:40,190 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/4.wav has been deleted. |  remove_file
+2024-08-04 20:27:42,418 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/5.wav has been deleted. |  remove_file
+2024-08-04 20:27:44,899 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/6.wav has been deleted. |  remove_file
+2024-08-04 20:31:47,514 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54331).wav has been deleted. |  remove_file
+2024-08-04 20:31:47,529 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '背一首李白的诗', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:31:55,284 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:31:59,878 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:32:01,993 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:32:04,252 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/3.wav has been deleted. |  remove_file
+2024-08-04 20:32:06,233 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/4.wav has been deleted. |  remove_file
+2024-08-04 20:32:08,439 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/5.wav has been deleted. |  remove_file
+2024-08-04 20:33:21,671 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54351).wav has been deleted. |  remove_file
+2024-08-04 20:33:21,688 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '切换功能模式', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:33:28,484 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:33:31,513 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:34:55,636 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54379).wav has been deleted. |  remove_file
+2024-08-04 20:35:14,663 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54381).wav has been deleted. |  remove_file
+2024-08-04 20:35:14,680 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '🛠️ Tool', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '今天福州的天气怎么样', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:38:11,323 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 20:38:56,392 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54427).wav has been deleted. |  remove_file
+2024-08-04 20:39:17,610 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54428).wav has been deleted. |  remove_file
+2024-08-04 20:39:34,620 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54435).wav has been deleted. |  remove_file
+2024-08-04 20:39:34,637 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '🛠️ Tool', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '厦门今天的天气怎么样', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:39:51,728 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/56125a13-ac5b-447e-9468-ed47b54556bf.wav has been deleted. |  remove_file
+2024-08-04 20:42:33,875 | Guka_Server.speak.speak | speak.py[line:9] |  INFO: 语音识别模型初始化完成 |  __init__
+2024-08-04 20:42:52,797 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54476).wav has been deleted. |  remove_file
+2024-08-04 20:43:04,901 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54477).wav has been deleted. |  remove_file
+2024-08-04 20:43:05,694 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54479).wav has been deleted. |  remove_file
+2024-08-04 20:43:05,708 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:43:41,170 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54487).wav has been deleted. |  remove_file
+2024-08-04 20:43:43,406 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54488).wav has been deleted. |  remove_file
+2024-08-04 20:43:43,440 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:44:06,455 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54491).wav has been deleted. |  remove_file
+2024-08-04 20:44:19,710 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54492).wav has been deleted. |  remove_file
+2024-08-04 20:44:20,488 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54494).wav has been deleted. |  remove_file
+2024-08-04 20:44:20,504 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:44:28,270 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:44:40,982 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54495).wav has been deleted. |  remove_file
+2024-08-04 20:45:02,672 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '🛠️ Tool', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '南京的天气怎么样', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:45:02,672 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54498).wav has been deleted. |  remove_file
+2024-08-04 20:45:20,559 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/56125a13-ac5b-447e-9468-ed47b54556bf.wav has been deleted. |  remove_file
+2024-08-04 20:48:04,501 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54535).wav has been deleted. |  remove_file
+2024-08-04 20:48:38,754 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54538).wav has been deleted. |  remove_file
+2024-08-04 20:48:38,770 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '背一首白居易的诗', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:48:47,638 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:48:49,575 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:48:51,582 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:48:53,582 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/3.wav has been deleted. |  remove_file
+2024-08-04 20:48:55,768 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/4.wav has been deleted. |  remove_file
+2024-08-04 20:52:28,898 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54588).wav has been deleted. |  remove_file
+2024-08-04 20:53:00,142 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54591).wav has been deleted. |  remove_file
+2024-08-04 20:53:00,158 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '你好', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:53:05,300 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:53:17,846 | Guka_Server | main.py[line:29] |  INFO: recoding('192.168.137.1', 54592).wav has been deleted. |  remove_file
+2024-08-04 20:53:17,864 | Guka_Server | main.py[line:111] |  INFO: {'flag': '推理', 'mode': '💬 Chat', 'retry': 0, 'top_p': 0.8, 'temperature': 0.95, 'prompt_text': '背一首白居易的诗', 'repetition_penalty': 1.1, 'max_new_token': 256, 'uid': '56125a13-ac5b-447e-9468-ed47b54556bf'} |  start_main
+2024-08-04 20:53:26,862 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/0.wav has been deleted. |  remove_file
+2024-08-04 20:53:28,843 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/1.wav has been deleted. |  remove_file
+2024-08-04 20:53:30,886 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/2.wav has been deleted. |  remove_file
+2024-08-04 20:53:32,815 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/3.wav has been deleted. |  remove_file
+2024-08-04 20:53:34,802 | Guka_Server.User.User | User.py[line:16] |  INFO: ./raw/4.wav has been deleted. |  remove_file

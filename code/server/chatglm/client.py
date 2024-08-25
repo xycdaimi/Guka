@@ -11,6 +11,7 @@ from transformers.generation.logits_process import LogitsProcessor
 from transformers.generation.utils import LogitsProcessorList
 from vits import Phonetic_cloning
 from chatglm.conversation import Conversation
+import threading
 logger = log.get_log(__name__)
 
 TOOL_PROMPT = 'Answer the following questions as best as you can. You have access to the following tools:'
@@ -19,7 +20,7 @@ MODEL_PATH = os.environ.get('MODEL_PATH', './model/chatGLM3')
 PT_PATH = os.environ.get('PT_PATH', None)
 PRE_SEQ_LEN = int(os.environ.get("PRE_SEQ_LEN", 128))
 TOKENIZER_PATH = os.environ.get("TOKENIZER_PATH", MODEL_PATH)
-
+closeLock = threading.Lock()
 
 
 

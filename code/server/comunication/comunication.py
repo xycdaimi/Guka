@@ -9,6 +9,8 @@ logger = log.get_log(__name__)
 STRING = 1
 AUDIO = 2
 JSON = 3
+FLAG = 4
+LONG_AUDIO = 5
 class Com(object):
     def __init__(self, host, port):
         try:
@@ -31,12 +33,15 @@ class Com(object):
     def send_data(self, conn, data_type, data):
         # 发送数据类型（这里用简单的整数表示）
         conn.sendall(struct.pack('!I', data_type))
-        if data_type == STRING:
+        if data_type == STRING or data_type == FLAG:
             data = data.encode('utf-8')
         elif data_type == JSON:
             data = json.dumps(data).encode('utf-8')
         # 发送数据长度
         data_length = len(data)
+        if data_type == LONG_AUDIO:
+            data_length *= 4
+        print("类型："+str(data_type)+" length"+str(data_length))
         conn.sendall(struct.pack('!I', data_length))
         # 发送数据本身
         conn.sendall(data)
@@ -57,7 +62,7 @@ class Com(object):
         data_length = struct.unpack('!I', data_length_bytes)[0]
         # 接收数据本身
         data = conn.recv(data_length)
-        if data_type == STRING:
+        if data_type == STRING or data_type == FLAG:
             data = data.decode('utf-8')
         elif data_type == JSON:
             data = json.loads(data.decode('utf-8'))

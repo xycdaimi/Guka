@@ -8,7 +8,6 @@ import search
 from User.login import Login
 import sys
 from urllib.request import urlretrieve
-
 logger = log.setup_log(file_name="./resource/log/guka.log")
 import cgitb
 cgitb.enable(format='text')

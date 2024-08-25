@@ -3,6 +3,7 @@ import struct
 import wave
 
 import keyboard
+import numpy
 
 import log
 import pyaudio
@@ -12,6 +13,8 @@ logger = log.get_log(__name__)
 STRING = 1
 AUDIO = 2
 JSON = 3
+FLAG = 4
+LONG_AUDIO = 5
 class Com(object):
     def __init__(self, host, port, chunk=1024,
                  for_mat=pyaudio.paInt16,
@@ -26,7 +29,7 @@ class Com(object):
             self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.s.connect((host, port))
             self.p = pyaudio.PyAudio()
-            self.out_stream = self.p.open(format=self.FORMAT,
+            self.out_stream = self.p.open(format=pyaudio.paFloat32,
                                       channels=self.CHANNELS,
                                       rate=self.RATE,
                                       output=True,
@@ -74,23 +77,33 @@ class Com(object):
         # 接收数据长度
         data_length_bytes = self.receive_all(4)
         data_length = struct.unpack('!I', data_length_bytes)[0]
+        print("类型："+str(data_type)+"长度："+str(data_length))
         # 接收数据本身
-        data = self.s.recv(data_length)
-        if data_type == STRING:
+        data = self.receive_all(data_length)
+        if data_type == STRING or data_type == FLAG:
             data = data.decode('utf-8')
         elif data_type == JSON:
             data = json.loads(data.decode('utf-8'))
+        # else:
+        #     print(len(data))
+        #     unpacked_data = struct.unpack('f' * (len(data)//4), data)
+        #
+        #     # 将解包后的数据转换为 NumPy 数组
+        #     log_data = numpy.array(unpacked_data, dtype=numpy.float32)
+        #     print(log_data)
         return data_type, data
 
     def send_data(self, data_type, data):
         # 发送数据类型（这里用简单的整数表示）
         self.s.sendall(struct.pack('!I', data_type))
-        if data_type == STRING:
+        if data_type == STRING or data_type == FLAG:
             data = data.encode('utf-8')
         elif data_type == JSON:
             data = json.dumps(data).encode('utf-8')
         # 发送数据长度
         data_length = len(data)
+        if data_type == LONG_AUDIO:
+            data_length *= 4
         self.s.sendall(struct.pack('!I', data_length))
         # 发送数据本身
         self.s.sendall(data)

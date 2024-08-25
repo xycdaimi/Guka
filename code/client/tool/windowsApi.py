@@ -85,6 +85,8 @@ class WindowsAPI:
             target_time_parts = time_str.split("时")
         elif '点' in time_str:
             target_time_parts = time_str.split("点")
+        elif '.' in time_str:
+            target_time_parts = time_str.split(".")
         target_hour = int(target_time_parts[0])
         target_minute = int(target_time_parts[1].split("分")[0])
         target_time = datetime.datetime(current_time.year, current_time.month, current_time.day, target_hour,

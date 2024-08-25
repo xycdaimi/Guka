@@ -10,6 +10,7 @@ from User import User
 from speak import speak
 import wave
 from chatglm import demo_chat, demo_tool
+from chatglm.client import closeLock
 #, demo_ci
 from enum import Enum
 from chatglm.client import svc
@@ -111,6 +112,9 @@ def start_main(audio, say, conn,addr):
         if data['flag'] == "推理":
             match data['mode']:
                 case Mode.CHAT:
+                    demo_chat.said_text[conn] = []
+                    textToAudio_th = threading.Thread(target=demo_chat.text_to_audio,args=(conn,audio,))
+                    textToAudio_th.start()
                     demo_chat.main(
                         retry=data['retry'],
                         top_p=data['top_p'],
@@ -154,12 +158,11 @@ def start_main(audio, say, conn,addr):
                 case _:
                     logger.error(f'Unexpected tab: {tab}')
     clients.remove(conn)
-    conn.close()
 if __name__ == '__main__':
     try:
         say = speak.Yuyin()
         #host = '127.0.0.1'
-        host = '192.168.137.67'
+        host = '192.168.137.105'
         port = 11222
         audio = comunication.Com(host, port)
         def signal_handler(signal, frame):  

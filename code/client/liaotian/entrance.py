@@ -5,7 +5,7 @@ from tool import collectSearch
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTextBrowser
 from PyQt5.QtGui import QFont, QFontMetrics, QCloseEvent
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QTimer
+from PyQt5.QtCore import Qt, QThread, pyqtSignal, QTimer, QMutex
 import log
 from User import User
 import json
@@ -14,9 +14,9 @@ from liaotian.new_widget import Set_question
 from liaotian.untitled import Ui_MainWindow
 from tool import windowsApi
 from User import conversation
-
+mutexBuffer = QMutex()
 logger = log.get_log(__name__)
-
+text_buffer = ""
 
 def get_file_path(app, path):
     with open(path, 'r', encoding='utf-8') as file:
@@ -42,6 +42,7 @@ class WorkerThread(QThread):
         self.frame = b''
         self.flag = True
         self.chunk = 1024
+        self.lockFrame = QMutex()
         self.win = windowsApi.WindowsAPI()
 
     def run(self):
@@ -54,13 +55,34 @@ class WorkerThread(QThread):
                               'uid': str(self.user.uid)})
         if self.mode == '💬 Chat':
             txt_buffer = ''
+            global text_buffer
+            text_buffer = ""
+            get_audio = threading.Thread(target=self.audio_get)
+            get_audio.start()
+            audio_sound = threading.Thread(target=self.sound_audio)
+            audio_sound.start()
             while True:
-                data_type, data = self.audio.receive_data()
-                if data == "end":
-                    break
-                txt_buffer = data
-                self.data_received.emit(data)
+                mutexBuffer.lock()
+                if text_buffer != "":
+                    print("句子："+text_buffer)
+                    if text_buffer == "end":
+                        text_buffer = ""
+                        mutexBuffer.unlock()
+                        break
+                    txt_buffer = text_buffer
+                    self.data_received.emit(text_buffer)
+                    text_buffer = ""
+                mutexBuffer.unlock()
+            #     data_type, data = self.audio.receive_data()
+            #     if data == "end":
+            #         break
+            #     txt_buffer = data
+            #     self.data_received.emit(data)
             self.his.emit(txt_buffer)
+            txt_buffer = ''
+
+            get_audio.join()
+            audio_sound.join()
             QApplication.processEvents()
         elif self.mode == '🛠️ Tool':
             data_type, data = self.audio.receive_data()
@@ -118,10 +140,11 @@ class WorkerThread(QThread):
                 data_type, data = self.audio.receive_data()
             self.data_received.emit(data)
             self.his.emit(data)
-        get_audio = threading.Thread(target=self.audio_get)
-        get_audio.start()
-        audio_sound = threading.Thread(target=self.sound_audio)
-        audio_sound.start()
+            get_audio = threading.Thread(target=self.audio_get)
+            get_audio.start()
+            audio_sound = threading.Thread(target=self.sound_audio)
+            audio_sound.start()
+
 
     def regular_reminder(self, data):
         text = self.win.wait_until_time(data['time'], data['text'])
@@ -138,26 +161,45 @@ class WorkerThread(QThread):
 
     def sound_audio(self):
         while True:
+            # self.lockFrame.lock()
             if len(self.frame) > 0:
                 data = self.frame[:self.chunk]
                 self.frame = self.frame[self.chunk:]
                 self.audio.write_audio(data)
             else:
                 if not self.flag and not len(self.frame):
+                    # self.lockFrame.unlock()
                     break
+            # self.lockFrame.unlock()
+
 
     def audio_get(self):
         self.flag = True
         self.frame = b''
+        text_flag = False
+        audio_flag = False
+        global text_buffer
         while True:
-            data = self.audio.s.recv(1024)
-            if not data:
-                break  # 没有更多数据，退出循环
-            if data:
+            if text_flag and audio_flag:
+                break
+            data_type, data = self.audio.receive_data()
+            if data_type == comunication.FLAG and data == 'ok':
+                audio_flag = True
+            elif data_type == comunication.FLAG and data == 'end':
+                text_flag = True
+            elif (data_type == comunication.AUDIO or data_type == comunication.LONG_AUDIO) and data:
+                # self.lockFrame.lock()
                 self.frame += data
+                # self.lockFrame.unlock()
+            elif data_type == comunication.STRING and data:
+                mutexBuffer.lock()
+                print("接收："+data)
+                text_buffer = data
+                mutexBuffer.unlock()
+        mutexBuffer.lock()
+        text_buffer = "end"
+        mutexBuffer.unlock()
         self.flag = False
-        # if self.frame:
-        #     self.audio.write_audio(self.frame)
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -169,7 +211,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.port = port
         self.user = user
         self.audio = None
-        self.mode = '💬 Chat'
+        self.mode = '🛠️ Tool'
         self.sum = 0  # 气泡数量
         self.widgetlist = []  # 记录气泡
         self.history = User.load_history(str(self.user.uid))

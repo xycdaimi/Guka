@@ -131,17 +131,20 @@ def main(
                             audio.send_data(conn,comunication.STRING,output_text)
                             ttstr = TTSController(uid+'.wav')
                             ttstr.textToaudio(output_text)
-                            svc.forward([uid+'.wav'],uid)
+                            res = svc.forward2([uid+'.wav'])
+                            audio.send_data(conn, comunication.LONG_AUDIO, res)
+                            audio.send_data(conn, comunication.FLAG, "end")
+                            audio.send_data(conn, comunication.FLAG, "ok")
                             rmraw = threading.Thread(target=User.remove_file,args=('./raw/'+uid+'.wav',))
                             rmraw.start()
-                            with wave.open('./results/'+uid+'.wav', 'rb') as wav_file:
-                                while True:
-                                    vioce_data = wav_file.readframes(1024)
-                                    if not vioce_data:
-                                        break  # 没有更多数据了
-                                    conn.sendall(vioce_data)
-                            rmfile = threading.Thread(target=User.remove_file,args=('./results/'+uid+'.wav',))
-                            rmfile.start()
+                            # with wave.open('./results/'+uid+'.wav', 'rb') as wav_file:
+                            #     while True:
+                            #         vioce_data = wav_file.readframes(1024)
+                            #         if not vioce_data:
+                            #             break  # 没有更多数据了
+                            #         conn.sendall(vioce_data)
+                            # rmfile = threading.Thread(target=User.remove_file,args=('./results/'+uid+'.wav',))
+                            # rmfile.start()
                             return
                         # Initiate tool call
                         case '<|assistant|>':
@@ -190,17 +193,20 @@ def main(
                 audio.send_data(conn,comunication.STRING,output_text)
                 ttstr = TTSController(uid+'.wav')
                 ttstr.textToaudio(output_text)
-                svc.forward([uid+'.wav'],uid)
+                res = svc.forward2([uid+'.wav'])
+                audio.send_data(conn, comunication.LONG_AUDIO, res)
+                audio.send_data(conn, comunication.FLAG, "end")
+                audio.send_data(conn, comunication.FLAG, "ok")
                 rmraw = threading.Thread(target=User.remove_file,args=('./raw/'+uid+'.wav',))
                 rmraw.start()
-                with wave.open('./results/'+uid+'.wav', 'rb') as wav_file:
-                    while True:
-                        vioce_data = wav_file.readframes(1024)
-                        if not vioce_data:
-                            break  # 没有更多数据了
-                        conn.sendall(vioce_data)
-                rmfile = threading.Thread(target=User.remove_file,args=('./results/'+uid+'.wav',))
-                rmfile.start()
+                # with wave.open('./results/'+uid+'.wav', 'rb') as wav_file:
+                #     while True:
+                #         vioce_data = wav_file.readframes(1024)
+                #         if not vioce_data:
+                #             break  # 没有更多数据了
+                #         conn.sendall(vioce_data)
+                # rmfile = threading.Thread(target=User.remove_file,args=('./results/'+uid+'.wav',))
+                # rmfile.start()
                 append_conversation(Conversation(
                     Role.ASSISTANT,
                     postprocess_text(output_text),
